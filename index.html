@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home - Jonathan Lopez</title>
+  <link rel="stylesheet" href="styles.css"/>
+  
+</head>
+<body>
+
+  <header>
+  <nav>
+    <ul class="main-nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Me</a></li>
+      <li><a href="experience.html">Experience</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="resume.html">Resume</a></li>
+      <li><a href="contact.html">Contact</a></li>
+
+      <!-- spacer pushes button to the far right -->
+      <li class="push-right"></li>
+
+      <!-- Search button -->
+      <li>
+        <button type="button"
+                class="cmdk-trigger"
+                onclick="window.__cmdkToggle && window.__cmdkToggle()"
+                aria-label="Search (Ctrl+K)"
+                title="Search (Ctrl+K)">
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+            <path fill="currentColor"
+              d="M15.5 14h-.79l-.28-.27A6.5 6.5 0 1 0 9.5 16a6.47 6.47 0 0 0 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zM9.5 14A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z"/>
+          </svg>
+          <span class="label">Search</span>
+          <kbd class="kbd">Ctrl</kbd><kbd class="kbd">K</kbd>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+  <main>
+
+   <section id="hero">
+  <div id="particles-js"></div>
+
+  <!-- add the image here -->
+  <img class="hero-avatar"
+       src="assets/images/portrait.jpg"
+       srcset="assets/images/portrait@2x.jpg 2x"
+       alt="Jonathan Lopez headshot"
+       width="160" height="160">
+
+  <h1>Jonathan Lopez</h1>
+  <p>Developer • ACO Automation • Computer Science Graduate</p>
+  <div class="hero-actions">
+  <a class="btn btn-primary" href="projects.html">See my projects</a>
+  <a class="btn btn-primary" href="resume.html">View resume</a>
+</div>
+
+
+</section>
+
+
+
+
+  </main>
+  <footer>
+    <div class="social-icons">
+      <a class="social-btn" href="https://x.com/yourhandle" target="_blank" rel="noopener" aria-label="X (Twitter)">
+        <img src="assets/images/x.png" alt="">
+      </a>
+      <a class="social-btn" href="https://instagram.com/yourhandle" target="_blank" rel="noopener" aria-label="Instagram">
+        <img src="assets/images/instagram.png" alt="">
+      
+      <a class="social-btn" href="https://facebook.com/yourhandle" target="_blank" rel="noopener" aria-label="Facebook">
+        <img src="assets/images/facebook.png" alt="">
+      </a>
+      <a class="social-btn" href="https://discord.gg/yourInvite" target="_blank" rel="noopener" aria-label="Discord">
+        <img src="assets/images/discord.png" alt="">
+      </a>
+    </div>
+</footer>
+
+
+  <script src="js/scripts.js"></script>
+  <!-- Command Palette -->
+<div id="cmdk-backdrop" class="cmdk-backdrop" hidden>
+  <div class="cmdk-panel" role="dialog" aria-modal="true" aria-labelledby="cmdk-title">
+    <div class="cmdk-input-row">
+      <span id="cmdk-title">Jump to…</span>
+      <input id="cmdk-input" type="text" placeholder="Type a command or page…" autocomplete="off" />
+      <button id="cmdk-close" aria-label="Close">✕</button>
+    </div>
+    <ul id="cmdk-list" class="cmdk-list" role="listbox" aria-label="Command results"></ul>
+  </div>
+</div>
+
+<!-- (Optional) one-time hint -->
+<div id="cmdk-hint" class="cmdk-hint" hidden>
+  Press <kbd>Ctrl</kbd><kbd>K</kbd> anywhere
+</div>
+
+</body>
+</html>
