@@ -69,10 +69,22 @@
           <p>Electron + SQLite inventory management for sneakers & cards.</p>
         </li>
 
-        <!-- 3) (Optional) Credit Card Payoff Planner tab -->
+        <!-- 3) Credit Card Payoff Planner tab -->
         <li class="card tab-card" data-target="payoff-planner" role="button" tabindex="0">
           <h3>Credit Card Payoff Planner</h3>
           <p>Python GUI with Avalanche/Snowball and biweekly scheduling.</p>
+        </li>
+
+        <!-- 4) Stock/Crypto Alert Bot -->
+        <li class="card tab-card" data-target="stock-alert-bot" role="button" tabindex="0">
+          <h3>Stock &amp; Crypto Alert Bot</h3>
+          <p>Python bot that sends Discord alerts for price thresholds via Yahoo Finance &amp; CoinGecko APIs.</p>
+        </li>
+
+        <!-- 5) Target Automation Tool -->
+        <li class="card tab-card" data-target="target-automation" role="button" tabindex="0">
+          <h3>Target Automation Tool</h3>
+          <p>Playwright-based tool with login automation, OTP handling, proxy support, and offer scraping.</p>
         </li>
       </ul>
     </section>
@@ -221,6 +233,70 @@ WHERE date_sold IS NOT NULL
     <a class="btn" href="assets/code/credit_card_payoff.py" download>Download full Python app</a>
   </p>
 </section>
+
+    <!-- Case Study: Stock & Crypto Alert Bot -->
+    <section id="stock-alert-bot" class="case-study hidden">
+      <h2>Stock &amp; Crypto Alert Bot</h2>
+      <p class="muted">Python • Yahoo Finance API • CoinGecko API • Discord Webhooks</p>
+      <p>
+        Monitors stock and cryptocurrency prices using public APIs and sends real-time Discord alerts
+        when user-defined thresholds are crossed. Price data is stored persistently so the bot can
+        track trends across sessions.
+      </p>
+
+      <h3>Key Features</h3>
+      <ul>
+        <li>Pulls live stock prices via Yahoo Finance API and crypto prices via CoinGecko API</li>
+        <li>Sends formatted Discord alerts when price goes above or below a set threshold</li>
+        <li>Persists watched assets and alert history to a local database</li>
+        <li>Configurable via <code>.env</code> — webhook URL, tickers, and thresholds</li>
+        <li>Scheduled polling loop runs continuously on Raspberry Pi</li>
+      </ul>
+
+      <div class="code-block">
+        <pre><code># Example config (.env)
+DISCORD_WEBHOOK=https://discord.com/api/webhooks/xxx
+WATCH_STOCKS=AAPL,NVDA,TSLA
+WATCH_CRYPTO=bitcoin,ethereum
+ALERT_THRESHOLD_PCT=5
+
+# run
+python stock_alert_bot.py</code></pre>
+      </div>
+    </section>
+
+    <!-- Case Study: Target Automation Tool -->
+    <section id="target-automation" class="case-study hidden">
+      <h2>Target Automation Tool</h2>
+      <p class="muted">Python • Playwright • Proxy Rotation • OTP Handling</p>
+      <p>
+        A browser automation tool built with Playwright that handles full login flows including
+        OTP (one-time password) authentication, proxy rotation for session management, and
+        offer/deal scraping from Target's platform.
+      </p>
+
+      <h3>Key Features</h3>
+      <ul>
+        <li>Automates login flow including email/password and OTP two-factor authentication</li>
+        <li>Proxy rotation support to manage multiple sessions independently</li>
+        <li>Scrapes available offers and logs them for review</li>
+        <li>Headless mode for running on a server or Raspberry Pi</li>
+        <li>Environment-based config via <code>.env</code> for credentials and proxy list</li>
+      </ul>
+
+      <div class="code-block">
+        <pre><code>pip install playwright python-dotenv
+playwright install chromium
+
+# .env
+TARGET_EMAIL=your_email
+TARGET_PASSWORD=your_password
+PROXY_LIST=ip1:port,ip2:port
+
+# run
+python target_automation.py</code></pre>
+      </div>
+    </section>
 
   </main>
 
