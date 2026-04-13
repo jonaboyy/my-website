@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects - Jonathan Lopez</title>
+  <link rel="stylesheet" href="styles.css"/>
+
+  <!-- Google Analytics 4 (G-8XG6EP39FG) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8XG6EP39FG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8XG6EP39FG');
+  </script>
+</head>
+<body>
+
+  <header>
+  <nav>
+    <ul class="main-nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Me</a></li>
+      <li><a href="experience.html">Experience</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="resume.html">Resume</a></li>
+      <li><a href="contact.html">Contact</a></li>
+
+      <!-- spacer pushes button to the far right -->
+      <li class="push-right"></li>
+
+      <!-- Search button -->
+      <li>
+        <button type="button"
+                class="cmdk-trigger"
+                onclick="window.__cmdkToggle && window.__cmdkToggle()"
+                aria-label="Search (Ctrl+K)"
+                title="Search (Ctrl+K)">
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+            <path fill="currentColor"
+              d="M15.5 14h-.79l-.28-.27A6.5 6.5 0 1 0 9.5 16a6.47 6.47 0 0 0 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zM9.5 14A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z"/>
+          </svg>
+          <span class="label">Search</span>
+          <kbd class="kbd">Ctrl</kbd><kbd class="kbd">K</kbd>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+
+  <main>
+    <!-- Top cards behave like tabs -->
+    <section id="projects">
+      <h1>Projects</h1>
+      <ul class="cards">
+        <!-- 1) Rename to Discord Embed Forwarder and point to that section -->
+        <li class="card tab-card is-active" data-target="discord-forwarder" role="button" tabindex="0">
+          <h3>Discord Embed Forwarder</h3>
+          <p>Mirrors webhook embeds across servers for #live-checkouts.</p>
+        </li>
+
+        <!-- 2) Clicking this shows the Inventory Desktop App section -->
+        <li class="card tab-card" data-target="inventory-app" role="button" tabindex="0">
+          <h3>Inventory Desktop App</h3>
+          <p>Electron + SQLite inventory management for sneakers & cards.</p>
+        </li>
+
+        <!-- 3) (Optional) Credit Card Payoff Planner tab -->
+        <li class="card tab-card" data-target="payoff-planner" role="button" tabindex="0">
+          <h3>Credit Card Payoff Planner</h3>
+          <p>Python GUI with Avalanche/Snowball and biweekly scheduling.</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- CASE STUDIES (only one visible at a time) -->
+    <section id="discord-forwarder" class="case-study">
+      <h2>Discord Embed Forwarder</h2>
+      <p class="muted">Python • discord.py • Webhooks • Requests</p>
+      <p>
+        Listens to a source channel for webhook-based messages and forwards the sanitized embed(s)
+        to multiple destination webhooks. Useful for <strong>#live-checkouts</strong> mirroring between servers.
+        Secrets are handled via environment variables.
+      </p>
+
+      <div class="case-grid">
+        <figure>
+          
+        
+          <img src="assets/images/discord_forwarder_1.png" alt="Discord Forwarder Screenshot 1">
+          <figcaption>Webhook embed detected in source channel.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/images/discord_forwarder_2.png" alt="Discord Forwarder Screenshot 2">
+          <figcaption>Forwarded to multiple destination webhooks.</figcaption>
+        </figure>
+      </div>
+
+      <h3>Key Features</h3>
+      <ul>
+        <li>Forwards only embeds (skips regular chat noise)</li>
+        <li>Whitelists important fields (Original Price, Retail Price, Quantity)</li>
+        <li>Optional announcement field on first forwarded message</li>
+        <li>Environment-based config via <code>.env</code></li>
+      </ul>
+
+      <div class="code-block">
+
+        <pre><code>pip install discord.py requests python-dotenv
+
+# .env
+DISCORD_BOT_TOKEN=your_bot_token_here
+TARGET_CHANNEL_ID=123456789012345678
+DESTINATION_WEBHOOKS=https://discord.com/api/webhooks/xxx,https://discord.com/api/webhooks/yyy
+
+# run
+python assets/code/discord_forwarder.py</code></pre>
+      </div>
+
+      <p>
+        <a class="btn" href="assets/code/discord_forwarder.py" download>Download the code</a>
+        <a class="btn" href="assets/code/.env.example" download>Download .env example</a>
+      </p>
+    </section>
+
+    <section id="inventory-app" class="case-study hidden">
+      <h2>Inventory Desktop App</h2>
+      <p class="muted">Electron • JavaScript • SQLite</p>
+      <p>
+        Desktop tool for resellers to track inventory, costs, and sales with fast CRUD,
+        real-time analytics, and a clean dark UI.
+      </p>
+
+      <div class="case-grid">
+        <figure>
+          <img src="assets/images/inventory_app_1.png" alt="Inventory App Screenshot 1">
+          <figcaption>Inventory list with add/edit/delete flow.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/images/inventory_app_2.png" alt="Inventory App Screenshot 2">
+          <figcaption>Analytics: Predicted vs Actual and monthly totals.</figcaption>
+        </figure>
+      </div>
+
+      <h3>Highlights</h3>
+      <ul>
+        <li>SQLite schema for items, banks, and sales with stock counting</li>
+        <li>Editable forms with dropdown for banks from Settings</li>
+        <li>Dark mode, sidebar navigation, and barcode scanning hook</li>
+      </ul>
+
+      <div class="code-block">
+
+        <pre><code><h3>Sample SQL</h3>
+<div class="code-block">
+
+  <pre><code>const sqlite3 = require('sqlite3').verbose();
+const path = require('path');
+
+const dbPath = path.join(__dirname, '../database/inventory.db');
+const db = new sqlite3.Database(dbPath, (err) => {
+    if (err) {
+        console.error('Database connection error:', err);
+    } else {
+        console.log('Connected to SQLite database.');
+    }
+});
+
+const initializeDatabase = () => {
+    db.run(`
+        CREATE TABLE IF NOT EXISTS inventory (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            timestamp TEXT DEFAULT CURRENT_TIMESTAMP,
+            sku TEXT NOT NULL,
+            shoe_name TEXT NOT NULL,
+            size TEXT NOT NULL,
+            card TEXT,
+            retail REAL,
+            predicted_resell REAL,
+            resell REAL,
+            quantity INTEGER DEFAULT 1,
+            date_sold TEXT
+        )
+    `);
+
+    db.run(`
+        CREATE TABLE IF NOT EXISTS banks (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            bank_name TEXT UNIQUE NOT NULL
+        )
+    `);
+};
+
+const getAllInventory = () => {
+    return new Promise((resolve, reject) => {
+        db.all('SELECT * FROM inventory', [], (err, rows) => {
+            if (err) reject(err);
+            resolve(rows);
+        });
+    });
+};
+
+const addInventory = (item) => {
+    return new Promise((resolve, reject) => {
+        db.run(
+            `INSERT INTO inventory (sku, shoe_name, size, card, retail, predicted_resell, resell, quantity) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+            [item.sku, item.shoe_name, item.size, item.card, item.retail, item.predicted_resell, item.resell, 1], // Always 1 per row
+            function (err) {
+                if (err) reject(err);
+                resolve({ id: this.lastID });
+            }
+        );
+    });
+};
+
+
+const deleteInventory = (id) => {
+    return new Promise((resolve, reject) => {
+        db.run(`DELETE FROM inventory WHERE id = ?`, [id], function (err) {
+            if (err) reject(err);
+            resolve(true);
+        });
+    });
+};
+
+const updateInventory = (item) => {
+    return new Promise((resolve, reject) => {
+        db.run(
+            `UPDATE inventory 
+             SET sku = ?, shoe_name = ?, size = ?, card = ?, retail = ?, predicted_resell = ?, quantity = ?, date_sold = COALESCE(?, date_sold), resell = COALESCE(?, resell)
+             WHERE id = ?`,
+            [
+                item.sku, 
+                item.shoe_name, 
+                item.size, 
+                item.card, 
+                item.retail, 
+                item.predicted_resell, 
+                item.quantity, 
+                item.date_sold || null,  // If no date_sold is provided, keep the existing value
+                item.resell || null,  // If no resell is provided, keep the existing value
+                item.id
+            ],
+            (err) => {
+                if (err) reject(err);
+                resolve(true);
+            }
+        );
+    });
+};
+
+
+
+const addBank = (bankName) => {
+    return new Promise((resolve, reject) => {
+        db.get("SELECT 1 FROM banks WHERE bank_name = ?", [bankName], (err, row) => {
+            if (err) {
+                console.error("Error checking bank:", err);
+                reject(new Error("⚠ Database error. Please try again."));
+                return;
+            }
+            if (row) {
+                reject(new Error("Bank already exists! Enter a different name.")); // ✅ FIXED: Removed encoding issue
+                return;
+            }
+
+            db.run("INSERT INTO banks (bank_name) VALUES (?)", [bankName], function (err) {
+                if (err) {
+                    console.error("Error adding bank:", err);
+                    reject(new Error("❌ Error adding bank. Please try again.")); // ✅ Clean message
+                    return;
+                }
+                resolve({ id: this.lastID });
+            });
+        });
+    });
+};
+
+
+
+const getBanks = () => {
+    return new Promise((resolve, reject) => {
+        db.all("SELECT * FROM banks", [], (err, rows) => {
+            if (err) {
+                console.error("Error fetching banks:", err);
+                reject(err);
+            } else {
+                resolve(rows);
+            }
+        });
+    });
+};
+
+
+const deleteBank = (id) => {
+    return new Promise((resolve, reject) => {
+        db.run("DELETE FROM banks WHERE id = ?", [id], (err) => {
+            if (err) {
+                console.error("Error deleting bank:", err);
+                reject(new Error("Failed to delete bank."));
+                return;
+            }
+            resolve(true);
+        });
+    });
+};
+
+
+
+const getAnalytics = (filterType) => {
+    let query = `
+        SELECT 
+            COALESCE(SUM(resell), 0) as totalSales, 
+            COALESCE(SUM(resell - retail), 0) as totalProfit
+        FROM inventory WHERE date_sold IS NOT NULL
+    `;
+
+    let graphQuery = `
+        SELECT 
+            date_sold as date, 
+            SUM(resell) as amount 
+        FROM inventory WHERE date_sold IS NOT NULL
+    `;
+
+    let recentSalesQuery = `
+        SELECT shoe_name, retail, resell, (resell - retail) as profit, date_sold
+        FROM inventory WHERE date_sold IS NOT NULL
+        ORDER BY date_sold DESC
+        LIMIT 10
+    `;
+
+    // ✅ Apply filter for "Year" data
+    if (filterType === "year") {
+        query += ` AND date_sold >= date('now', '-12 months')`;  // ✅ Only last 12 months
+        graphQuery += ` AND date_sold >= date('now', '-12 months')`; 
+        recentSalesQuery += ` AND date_sold >= date('now', '-12 months')`;
+    }
+
+    graphQuery += " GROUP BY date_sold ORDER BY date_sold";
+
+    return new Promise((resolve, reject) => {
+        db.get(query, [], (err, row) => {
+            if (err) reject(err);
+
+            db.all(graphQuery, [], (err, graphRows) => {
+                if (err) reject(err);
+
+                db.all(recentSalesQuery, [], (err, salesRows) => {
+                    if (err) reject(err);
+
+                    resolve({
+                        totalSales: row?.totalSales || 0,
+                        totalProfit: row?.totalProfit || 0,
+                        salesData: graphRows.map(entry => ({
+                            date: entry.date,
+                            amount: entry.amount
+                        })),
+                        recentSales: salesRows || []
+                    });
+                });
+            });
+        });
+    });
+};
+
+
+
+
+const getInventorySummary = () => {
+    return new Promise((resolve, reject) => {
+        db.all(
+            `SELECT sku, shoe_name, size, retail, resell FROM inventory WHERE date_sold IS NULL`,
+            [],
+            (err, rows) => {
+                if (err) reject(err);
+                resolve(rows);
+            }
+        );
+    });
+};
+const sellItem = (item) => {
+    return new Promise((resolve, reject) => {
+        db.run(
+            `UPDATE inventory SET date_sold = ?, resell = ? WHERE id = ?`,
+            [item.date_sold, item.resell, item.id],
+            (err) => {
+                if (err) reject(err);
+                resolve(true);
+            }
+        );
+    });
+};
+
+
+
+
+module.exports = {
+    initializeDatabase,
+    getAllInventory,
+    addInventory,
+    deleteInventory,
+    updateInventory,
+    sellItem,
+    getAnalytics,
+    addBank,
+    getBanks,
+    getInventorySummary,
+    deleteBank
+};
+</code></pre>
+</div>
+</code></pre>
+      </div>
+    </section>
+
+    <!-- Case Study: Credit Card Payoff Planner -->
+<section id="payoff-planner" class="case-study">
+  <h2>Credit Card Payoff Planner</h2>
+  <p class="muted">Python • Tkinter • Finance</p>
+  <p>
+    Calculates Avalanche/Snowball payoff schedules with biweekly or fixed total payments.
+    Supports custom per-card payments, minimums, and rolls freed payments onto the priority card.
+  </p>
+
+  <!-- screenshots -->
+  <div class="case-grid">
+    <figure>
+      <img src="assets/images/payoff_planner_1.png" alt="Payoff Planner main window with cards and inputs">
+      <figcaption>Main window: preset cards, custom payments, strategy selector.</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/images/payoff_planner_2.png" alt="Monthly breakdown of payments by card">
+      <figcaption>Monthly breakdown: payments per card and payoff progress.</figcaption>
+    </figure>
+  </div>
+
+  <h3>Sample Code</h3>
+  <div class="code-block">
+    <pre><code>class CreditCardPayoffApp:
+    def calculate(self):
+        # collect cards + total payment
+        results, breakdown = self.simulate_dynamic_payoff(cards, total_payment)
+        self.display_results(results)
+        self.display_breakdown(breakdown)
+
+    def simulate_dynamic_payoff(self, cards, total_payment):
+        # Avalanche = highest APR first, Snowball = smallest balance first
+        # 1) apply custom/min payments to all, 2) throw the rest at the priority card
+        ...</code></pre>
+  </div>
+
+  <p>
+    <a class="btn" href="assets/code/credit_card_payoff.py" download>Download full Python app</a>
+  </p>
+</section>
+
+  </main>
+
+  <footer>
+    <div class="social-icons">
+      <a class="social-btn" href="https://x.com/jonaboyy10" target="_blank" rel="noopener" aria-label="X (Twitter)">
+        <img src="assets/images/x.png" alt="">
+      </a>
+      <a class="social-btn" href="https://instagram.com/jona_aio" target="_blank" rel="noopener" aria-label="Instagram">
+        <img src="assets/images/instagram.png" alt="">
+      
+      <a class="social-btn" href="https://facebook.com/jonaaaio" target="_blank" rel="noopener" aria-label="Facebook">
+        <img src="assets/images/facebook.png" alt="">
+      </a>
+      <a class="social-btn" href="https://discord.gg/bHjJW6hHjf" target="_blank" rel="noopener" aria-label="Discord">
+        <img src="assets/images/discord.png" alt="">
+      </a>
+    </div>
+</footer>
+
+  <script src="js/scripts.js"></script>
+  <!-- Command Palette -->
+<div id="cmdk-backdrop" class="cmdk-backdrop" hidden>
+  <div class="cmdk-panel" role="dialog" aria-modal="true" aria-labelledby="cmdk-title">
+    <div class="cmdk-input-row">
+      <span id="cmdk-title">Jump to…</span>
+      <input id="cmdk-input" type="text" placeholder="Type a command or page…" autocomplete="off" />
+      <button id="cmdk-close" aria-label="Close">✕</button>
+    </div>
+    <ul id="cmdk-list" class="cmdk-list" role="listbox" aria-label="Command results"></ul>
+  </div>
+</div>
+
+<!-- (Optional) one-time hint -->
+<div id="cmdk-hint" class="cmdk-hint" hidden>
+  Press <kbd>Ctrl</kbd><kbd>K</kbd> anywhere
+</div>
+
+</body>
+</html>

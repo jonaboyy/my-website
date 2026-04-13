@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio - Jonathan Lopez</title>
+  <link rel="stylesheet" href="styles.css"/>
+
+  <!-- Google Analytics 4 (G-8XG6EP39FG) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8XG6EP39FG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8XG6EP39FG');
+  </script>
+</head>
+<body>
+
+  <header>
+  <nav>
+    <ul class="main-nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Me</a></li>
+      <li><a href="experience.html">Experience</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="resume.html">Resume</a></li>
+      <li><a href="contact.html">Contact</a></li>
+
+      <!-- spacer pushes button to the far right -->
+      <li class="push-right"></li>
+
+      <!-- Search button -->
+      <li>
+        <button type="button"
+                class="cmdk-trigger"
+                onclick="window.__cmdkToggle && window.__cmdkToggle()"
+                aria-label="Search (Ctrl+K)"
+                title="Search (Ctrl+K)">
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+            <path fill="currentColor"
+              d="M15.5 14h-.79l-.28-.27A6.5 6.5 0 1 0 9.5 16a6.47 6.47 0 0 0 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zM9.5 14A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z"/>
+          </svg>
+          <span class="label">Search</span>
+          <kbd class="kbd">Ctrl</kbd><kbd class="kbd">K</kbd>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+
+  <main>
+    <section id="portfolio" class="portfolio-page">
+      <h1>Portfolio</h1>
+
+      <!-- Filter chips -->
+      <div class="filters chips">
+        <button class="chip is-active" data-filter="all">All</button>
+        <button class="chip" data-filter="automation">Automation</button>
+        <button class="chip" data-filter="discord">Discord</button>
+        <button class="chip" data-filter="desktop">Desktop App</button>
+        <button class="chip" data-filter="finance">Finance</button>
+        <button class="chip" data-filter="sql">SQL/DB</button>
+      </div>
+
+      <!-- Grid -->
+      <div class="portfolio-grid">
+
+        <!-- 1) Discord Embed Forwarder -->
+        <article class="p-card" data-tags="automation discord python">
+          <a class="p-thumb" href="assets/images/discord_forwarder_2.png" data-lightbox>
+            <img loading="lazy" decoding="async" src="assets/images/discord_forwarder_2.png" alt="Discord Embed Forwarder screenshot">
+          </a>
+          <div class="p-body">
+            <h3>Discord Embed Forwarder</h3>
+            <p>Bot that mirrors webhook embeds across servers with field whitelisting and optional announcements.</p>
+            <div class="p-tags">
+              <span class="chip">Python</span><span class="chip">discord.py</span><span class="chip">Automation</span>
+            </div>
+            <div class="p-actions">
+              <a class="btn btn-primary" href="projects.html#discord-forwarder">Project page</a>
+              <a class="btn" href="assets/code/discord_forwarder.py" download>Download</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2) Inventory Desktop App -->
+        <article class="p-card" data-tags="desktop sql javascript">
+          <a class="p-thumb" href="assets/images/inventory_app_1.png" data-lightbox>
+            <img loading="lazy" decoding="async" src="assets/images/inventory_app_1.png" alt="Inventory Desktop App screenshot">
+          </a>
+          <div class="p-body">
+            <h3>Inventory Desktop App</h3>
+            <p>Electron + SQLite tool for tracking stock, costs, and sales with a fast dark UI.</p>
+            <div class="p-tags">
+              <span class="chip">Electron</span><span class="chip">SQLite</span><span class="chip">Desktop</span>
+            </div>
+            <div class="p-actions">
+              <a class="btn btn-primary" href="projects.html#inventory-app">Project page</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3) Credit Card Payoff Planner -->
+        <article class="p-card" data-tags="finance python desktop">
+          <a class="p-thumb" href="assets/images/payoff_planner_1.png" data-lightbox>
+            <img loading="lazy" decoding="async" src="assets/images/payoff_planner_1.png" alt="Credit Card Payoff Planner screenshot">
+          </a>
+          <div class="p-body">
+            <h3>Credit Card Payoff Planner</h3>
+            <p>Tkinter app with Avalanche/Snowball strategies and monthly payment breakdowns.</p>
+            <div class="p-tags">
+              <span class="chip">Python</span><span class="chip">Tkinter</span><span class="chip">Finance</span>
+            </div>
+            <div class="p-actions">
+              <a class="btn btn-primary" href="projects.html#payoff-planner">Project page</a>
+              <a class="btn" href="assets/code/credit_card_payoff.py" download>Download</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4) Inventory SQL Schema (sample) -->
+        <article class="p-card" data-tags="sql">
+          <a class="p-thumb" href="assets/images/sql_schema.png" data-lightbox>
+            <img loading="lazy" decoding="async" src="assets/images/sql_schema.png" alt="Inventory SQL schema diagram">
+          </a>
+          <div class="p-body">
+            <h3>Inventory SQL Schema</h3>
+            <p>SQLite schema for items and banks used by the Inventory Desktop App.</p>
+            <div class="p-tags">
+              <span class="chip">SQL</span><span class="chip">SQLite</span>
+            </div>
+            <div class="p-actions">
+              <a class="btn btn-primary" href="projects.html#inventory-app">See sample SQL</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5) Small Automation Scripts (placeholder thumbnails ok) -->
+        <article class="p-card" data-tags="automation python">
+          <a class="p-thumb" href="assets/images/automation_scripts.png" data-lightbox>
+            <img loading="lazy" decoding="async" src="assets/images/automation_scripts.png" alt="Automation scripts collage">
+          </a>
+          <div class="p-body">
+            <h3>Utility Scripts</h3>
+            <p>Small tools for live-checkout reactions, price watching, and server utilities.</p>
+            <div class="p-tags">
+              <span class="chip">Python</span><span class="chip">Automation</span>
+            </div>
+            <div class="p-actions">
+              <a class="btn" href="contact.html">Ask me about these</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="social-icons">
+      <a class="social-btn" href="https://x.com/jonaboyy10" target="_blank" rel="noopener" aria-label="X (Twitter)">
+        <img src="assets/images/x.png" alt="">
+      </a>
+      <a class="social-btn" href="https://instagram.com/jona_aio" target="_blank" rel="noopener" aria-label="Instagram">
+        <img src="assets/images/instagram.png" alt="">
+      
+      <a class="social-btn" href="https://facebook.com/jonaaaio" target="_blank" rel="noopener" aria-label="Facebook">
+        <img src="assets/images/facebook.png" alt="">
+      </a>
+      <a class="social-btn" href="https://discord.gg/bHjJW6hHjf" target="_blank" rel="noopener" aria-label="Discord">
+        <img src="assets/images/discord.png" alt="">
+      </a>
+    </div>
+</footer>
+  <script src="js/scripts.js"></script>
+  <!-- Command Palette -->
+<div id="cmdk-backdrop" class="cmdk-backdrop" hidden>
+  <div class="cmdk-panel" role="dialog" aria-modal="true" aria-labelledby="cmdk-title">
+    <div class="cmdk-input-row">
+      <span id="cmdk-title">Jump to…</span>
+      <input id="cmdk-input" type="text" placeholder="Type a command or page…" autocomplete="off" />
+      <button id="cmdk-close" aria-label="Close">✕</button>
+    </div>
+    <ul id="cmdk-list" class="cmdk-list" role="listbox" aria-label="Command results"></ul>
+  </div>
+</div>
+
+<!-- (Optional) one-time hint -->
+<div id="cmdk-hint" class="cmdk-hint" hidden>
+  Press <kbd>Ctrl</kbd><kbd>K</kbd> anywhere
+</div>
+
+</body>
+</html>
