@@ -422,10 +422,10 @@ function prefetchOnHover(){
     }
     function toggleAccent() {
       const root = document.documentElement;
-      const current = getComputedStyle(root).getPropertyValue('--accent').trim() || '#ff7a1a';
-      const next = (current.toLowerCase() === '#ff7a1a') ? '#4da3ff' : '#ff7a1a';
+      const current = getComputedStyle(root).getPropertyValue('--accent').trim() || '#0ea5e9';
+      const next = (current.toLowerCase() === '#0ea5e9') ? '#a855f7' : '#0ea5e9';
       root.style.setProperty('--accent', next);
-      root.style.setProperty('--accent-2', (next === '#ff7a1a') ? '#ffb86b' : '#9cc7ff');
+      root.style.setProperty('--accent-2', (next === '#0ea5e9') ? '#7dd3fc' : '#d8b4fe');
       toast('Accent updated');
     }
 

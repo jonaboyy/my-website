@@ -122,6 +122,7 @@ python assets/code/discord_forwarder.py</code></pre>
       </div>
 
       <p>
+        <a class="btn btn-primary" href="https://github.com/jonaboyy/-webhook_discord_bot" target="_blank" rel="noopener">View on GitHub</a>
         <a class="btn" href="assets/code/discord_forwarder.py" download>Download the code</a>
         <a class="btn" href="assets/code/.env.example" download>Download .env example</a>
       </p>
@@ -153,273 +154,35 @@ python assets/code/discord_forwarder.py</code></pre>
         <li>Dark mode, sidebar navigation, and barcode scanning hook</li>
       </ul>
 
+      <h3>Sample SQL Schema</h3>
       <div class="code-block">
+        <pre><code>-- Inventory table with cost, predicted vs actual resell, and sold tracking
+CREATE TABLE IF NOT EXISTS inventory (
+    id               INTEGER PRIMARY KEY AUTOINCREMENT,
+    timestamp        TEXT    DEFAULT CURRENT_TIMESTAMP,
+    sku              TEXT    NOT NULL,
+    shoe_name        TEXT    NOT NULL,
+    size             TEXT    NOT NULL,
+    card             TEXT,
+    retail           REAL,
+    predicted_resell REAL,
+    resell           REAL,
+    quantity         INTEGER DEFAULT 1,
+    date_sold        TEXT
+);
 
-        <pre><code><h3>Sample SQL</h3>
-<div class="code-block">
-
-  <pre><code>const sqlite3 = require('sqlite3').verbose();
-const path = require('path');
-
-const dbPath = path.join(__dirname, '../database/inventory.db');
-const db = new sqlite3.Database(dbPath, (err) => {
-    if (err) {
-        console.error('Database connection error:', err);
-    } else {
-        console.log('Connected to SQLite database.');
-    }
-});
-
-const initializeDatabase = () => {
-    db.run(`
-        CREATE TABLE IF NOT EXISTS inventory (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            timestamp TEXT DEFAULT CURRENT_TIMESTAMP,
-            sku TEXT NOT NULL,
-            shoe_name TEXT NOT NULL,
-            size TEXT NOT NULL,
-            card TEXT,
-            retail REAL,
-            predicted_resell REAL,
-            resell REAL,
-            quantity INTEGER DEFAULT 1,
-            date_sold TEXT
-        )
-    `);
-
-    db.run(`
-        CREATE TABLE IF NOT EXISTS banks (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            bank_name TEXT UNIQUE NOT NULL
-        )
-    `);
-};
-
-const getAllInventory = () => {
-    return new Promise((resolve, reject) => {
-        db.all('SELECT * FROM inventory', [], (err, rows) => {
-            if (err) reject(err);
-            resolve(rows);
-        });
-    });
-};
-
-const addInventory = (item) => {
-    return new Promise((resolve, reject) => {
-        db.run(
-            `INSERT INTO inventory (sku, shoe_name, size, card, retail, predicted_resell, resell, quantity) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-            [item.sku, item.shoe_name, item.size, item.card, item.retail, item.predicted_resell, item.resell, 1], // Always 1 per row
-            function (err) {
-                if (err) reject(err);
-                resolve({ id: this.lastID });
-            }
-        );
-    });
-};
-
-
-const deleteInventory = (id) => {
-    return new Promise((resolve, reject) => {
-        db.run(`DELETE FROM inventory WHERE id = ?`, [id], function (err) {
-            if (err) reject(err);
-            resolve(true);
-        });
-    });
-};
-
-const updateInventory = (item) => {
-    return new Promise((resolve, reject) => {
-        db.run(
-            `UPDATE inventory 
-             SET sku = ?, shoe_name = ?, size = ?, card = ?, retail = ?, predicted_resell = ?, quantity = ?, date_sold = COALESCE(?, date_sold), resell = COALESCE(?, resell)
-             WHERE id = ?`,
-            [
-                item.sku, 
-                item.shoe_name, 
-                item.size, 
-                item.card, 
-                item.retail, 
-                item.predicted_resell, 
-                item.quantity, 
-                item.date_sold || null,  // If no date_sold is provided, keep the existing value
-                item.resell || null,  // If no resell is provided, keep the existing value
-                item.id
-            ],
-            (err) => {
-                if (err) reject(err);
-                resolve(true);
-            }
-        );
-    });
-};
-
-
-
-const addBank = (bankName) => {
-    return new Promise((resolve, reject) => {
-        db.get("SELECT 1 FROM banks WHERE bank_name = ?", [bankName], (err, row) => {
-            if (err) {
-                console.error("Error checking bank:", err);
-                reject(new Error("⚠ Database error. Please try again."));
-                return;
-            }
-            if (row) {
-                reject(new Error("Bank already exists! Enter a different name.")); // ✅ FIXED: Removed encoding issue
-                return;
-            }
-
-            db.run("INSERT INTO banks (bank_name) VALUES (?)", [bankName], function (err) {
-                if (err) {
-                    console.error("Error adding bank:", err);
-                    reject(new Error("❌ Error adding bank. Please try again.")); // ✅ Clean message
-                    return;
-                }
-                resolve({ id: this.lastID });
-            });
-        });
-    });
-};
-
-
-
-const getBanks = () => {
-    return new Promise((resolve, reject) => {
-        db.all("SELECT * FROM banks", [], (err, rows) => {
-            if (err) {
-                console.error("Error fetching banks:", err);
-                reject(err);
-            } else {
-                resolve(rows);
-            }
-        });
-    });
-};
-
-
-const deleteBank = (id) => {
-    return new Promise((resolve, reject) => {
-        db.run("DELETE FROM banks WHERE id = ?", [id], (err) => {
-            if (err) {
-                console.error("Error deleting bank:", err);
-                reject(new Error("Failed to delete bank."));
-                return;
-            }
-            resolve(true);
-        });
-    });
-};
-
-
-
-const getAnalytics = (filterType) => {
-    let query = `
-        SELECT 
-            COALESCE(SUM(resell), 0) as totalSales, 
-            COALESCE(SUM(resell - retail), 0) as totalProfit
-        FROM inventory WHERE date_sold IS NOT NULL
-    `;
-
-    let graphQuery = `
-        SELECT 
-            date_sold as date, 
-            SUM(resell) as amount 
-        FROM inventory WHERE date_sold IS NOT NULL
-    `;
-
-    let recentSalesQuery = `
-        SELECT shoe_name, retail, resell, (resell - retail) as profit, date_sold
-        FROM inventory WHERE date_sold IS NOT NULL
-        ORDER BY date_sold DESC
-        LIMIT 10
-    `;
-
-    // ✅ Apply filter for "Year" data
-    if (filterType === "year") {
-        query += ` AND date_sold >= date('now', '-12 months')`;  // ✅ Only last 12 months
-        graphQuery += ` AND date_sold >= date('now', '-12 months')`; 
-        recentSalesQuery += ` AND date_sold >= date('now', '-12 months')`;
-    }
-
-    graphQuery += " GROUP BY date_sold ORDER BY date_sold";
-
-    return new Promise((resolve, reject) => {
-        db.get(query, [], (err, row) => {
-            if (err) reject(err);
-
-            db.all(graphQuery, [], (err, graphRows) => {
-                if (err) reject(err);
-
-                db.all(recentSalesQuery, [], (err, salesRows) => {
-                    if (err) reject(err);
-
-                    resolve({
-                        totalSales: row?.totalSales || 0,
-                        totalProfit: row?.totalProfit || 0,
-                        salesData: graphRows.map(entry => ({
-                            date: entry.date,
-                            amount: entry.amount
-                        })),
-                        recentSales: salesRows || []
-                    });
-                });
-            });
-        });
-    });
-};
-
-
-
-
-const getInventorySummary = () => {
-    return new Promise((resolve, reject) => {
-        db.all(
-            `SELECT sku, shoe_name, size, retail, resell FROM inventory WHERE date_sold IS NULL`,
-            [],
-            (err, rows) => {
-                if (err) reject(err);
-                resolve(rows);
-            }
-        );
-    });
-};
-const sellItem = (item) => {
-    return new Promise((resolve, reject) => {
-        db.run(
-            `UPDATE inventory SET date_sold = ?, resell = ? WHERE id = ?`,
-            [item.date_sold, item.resell, item.id],
-            (err) => {
-                if (err) reject(err);
-                resolve(true);
-            }
-        );
-    });
-};
-
-
-
-
-module.exports = {
-    initializeDatabase,
-    getAllInventory,
-    addInventory,
-    deleteInventory,
-    updateInventory,
-    sellItem,
-    getAnalytics,
-    addBank,
-    getBanks,
-    getInventorySummary,
-    deleteBank
-};
-</code></pre>
-</div>
-</code></pre>
+-- Analytics query: total sales and profit, filterable by date range
+SELECT
+    COALESCE(SUM(resell), 0)          AS total_sales,
+    COALESCE(SUM(resell - retail), 0) AS total_profit
+FROM inventory
+WHERE date_sold IS NOT NULL
+  AND date_sold &gt;= date('now', '-12 months');</code></pre>
       </div>
     </section>
 
     <!-- Case Study: Credit Card Payoff Planner -->
-<section id="payoff-planner" class="case-study">
+<section id="payoff-planner" class="case-study hidden">
   <h2>Credit Card Payoff Planner</h2>
   <p class="muted">Python • Tkinter • Finance</p>
   <p>
@@ -463,17 +226,23 @@ module.exports = {
 
   <footer>
     <div class="social-icons">
+      <a class="social-btn" href="https://linkedin.com/in/jona1010" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <img src="assets/images/linkedin.svg" alt="">
+      </a>
+      <a class="social-btn" href="https://github.com/jonaboyy" target="_blank" rel="noopener" aria-label="GitHub">
+        <img src="assets/images/github.svg" alt="">
+      </a>
       <a class="social-btn" href="https://x.com/jonaboyy10" target="_blank" rel="noopener" aria-label="X (Twitter)">
-        <img src="assets/images/x.png" alt="">
+        <img src="assets/images/x.svg" alt="">
       </a>
       <a class="social-btn" href="https://instagram.com/jona_aio" target="_blank" rel="noopener" aria-label="Instagram">
-        <img src="assets/images/instagram.png" alt="">
-      
+        <img src="assets/images/instagram.svg" alt="">
+      </a>
       <a class="social-btn" href="https://facebook.com/jonaaaio" target="_blank" rel="noopener" aria-label="Facebook">
-        <img src="assets/images/facebook.png" alt="">
+        <img src="assets/images/facebook.svg" alt="">
       </a>
       <a class="social-btn" href="https://discord.gg/bHjJW6hHjf" target="_blank" rel="noopener" aria-label="Discord">
-        <img src="assets/images/discord.png" alt="">
+        <img src="assets/images/discord.svg" alt="">
       </a>
     </div>
 </footer>

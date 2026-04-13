@@ -32,7 +32,7 @@ body {
   }
   
   header nav ul li a:hover {
-    color: #ff5722;
+    color: #0284c7;
     transform: scale(1.1);
   }
   
@@ -56,7 +56,7 @@ body {
   }
   
   section h1 {
-    color: #ff5722;
+    color: #0284c7;
   }
   
   #home {
@@ -105,7 +105,7 @@ body {
   
   form button {
     padding: 10px 20px;
-    background-color: #ff5722;
+    background-color: #0284c7;
     color: white;
     border: none;
     border-radius: 4px;
@@ -168,8 +168,7 @@ body {
   }
   
   footer .social-icons img {
-    width: 40px;
-    height: 40px;
+    /* size controlled by .social-btn img */
   }
 
 
@@ -201,7 +200,7 @@ h1 { margin: 18px 0; }
 .btn { display: inline-block; padding: 10px 14px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); border-radius: 10px; color: #e9edf4; text-decoration: none; }
 .btn:hover { filter: brightness(1.08); }
 footer { border-top: 1px solid rgba(255,255,255,0.12); padding: 20px 16px; display: flex; justify-content: center; }
-.social-icons img { height: 22px; margin: 0 6px; opacity: 0.9; }
+.social-icons img { height: 15px; margin: 0 6px; opacity: 0.9; }
 .note { color: #9aa3b2; font-size: 14px; }
 #hero { display: grid; place-items: center; padding: 80px 0 40px; position: relative; text-align: center; }
 #particles-js { position: absolute; inset: 0; z-index: 0; }
@@ -232,9 +231,9 @@ footer { border-top: 1px solid rgba(255,255,255,0.12); padding: 20px 16px; displ
 .copy-btn:hover { filter: brightness(1.1); }
 /* Accent color for hover effects */
 :root {
-  --accent: #ff7a1a;                  /* orange */
-  --accent-ghost: rgba(255,122,26,.14);
-  --accent-ring: rgba(255,122,26,.28);
+  --accent: #0ea5e9;                  /* orange */
+  --accent-ghost: rgba(14,165,233,.14);
+  --accent-ring: rgba(14,165,233,.28);
 }
 
 /* Smooth transitions for the cards */
@@ -249,7 +248,7 @@ footer { border-top: 1px solid rgba(255,255,255,0.12); padding: 20px 16px; displ
 #projects .card:focus-within {
   border-color: var(--accent);
   background: linear-gradient(0deg, var(--accent-ghost), var(--accent-ghost));
-  box-shadow: 0 0 0 2px var(--accent-ring) inset, 0 10px 24px rgba(255,122,26,.18);
+  box-shadow: 0 0 0 2px var(--accent-ring) inset, 0 10px 24px rgba(14,165,233,.18);
   transform: translateY(-2px);
 }
 
@@ -275,8 +274,8 @@ footer { border-top: 1px solid rgba(255,255,255,0.12); padding: 20px 16px; displ
 #hero p  { margin: 6px 0 18px; line-height: 1.6; color: #cfd6e4; }
 
 /* Button variants + group */
-.btn-primary { border-color: rgba(255,122,26,.4); background: rgba(255,122,26,.12); }
-.btn-primary:hover { box-shadow: 0 0 0 2px rgba(255,122,26,.28) inset; }
+.btn-primary { border-color: rgba(14,165,233,.4); background: rgba(14,165,233,.12); }
+.btn-primary:hover { box-shadow: 0 0 0 2px rgba(14,165,233,.28) inset; }
 
 .btn-secondary { margin-left: 10px; }
 @media (max-width: 520px){
@@ -294,15 +293,15 @@ footer { border-top: 1px solid rgba(255,255,255,0.12); padding: 20px 16px; displ
 }
 
 /* Social icons (size + spacing) */
-.social-icons img { width: 22px; height: 22px; object-fit: contain; margin: 0 10px; opacity: .95; }
+.social-icons img { width: 15px; height: 15px; object-fit: contain; margin: 0 10px; opacity: .95; }
 .social-icons img:hover { opacity: 1; }
 /* Hero spacing + typography */
 #hero h1 { margin: 10px 0 6px; }
 #hero p  { margin: 6px 0 18px; line-height: 1.6; color: #cfd6e4; }
 
 /* Button variants + group */
-.btn-primary { border-color: rgba(255,122,26,.4); background: rgba(255,122,26,.12); }
-.btn-primary:hover { box-shadow: 0 0 0 2px rgba(255,122,26,.28) inset; }
+.btn-primary { border-color: rgba(14,165,233,.4); background: rgba(14,165,233,.12); }
+.btn-primary:hover { box-shadow: 0 0 0 2px rgba(14,165,233,.28) inset; }
 
 .btn-secondary { margin-left: 10px; }
 @media (max-width: 520px){
@@ -320,15 +319,15 @@ footer { border-top: 1px solid rgba(255,255,255,0.12); padding: 20px 16px; displ
 }
 
 /* Social icons (size + spacing) */
-.social-icons img { width: 22px; height: 22px; object-fit: contain; margin: 0 10px; opacity: .95; }
+.social-icons img { width: 15px; height: 15px; object-fit: contain; margin: 0 10px; opacity: .95; }
 .social-icons img:hover { opacity: 1; }
 /* Hero spacing + typography */
 #hero h1 { margin: 10px 0 6px; }
 #hero p  { margin: 6px 0 18px; line-height: 1.6; color: #cfd6e4; }
 
 /* Button variants + group */
-.btn-primary { border-color: rgba(255,122,26,.4); background: rgba(255,122,26,.12); }
-.btn-primary:hover { box-shadow: 0 0 0 2px rgba(255,122,26,.28) inset; }
+.btn-primary { border-color: rgba(14,165,233,.4); background: rgba(14,165,233,.12); }
+.btn-primary:hover { box-shadow: 0 0 0 2px rgba(14,165,233,.28) inset; }
 
 .btn-secondary { margin-left: 10px; }
 @media (max-width: 520px){
@@ -346,15 +345,15 @@ footer { border-top: 1px solid rgba(255,255,255,0.12); padding: 20px 16px; displ
 }
 
 /* Social icons (size + spacing) */
-.social-icons img { width: 22px; height: 22px; object-fit: contain; margin: 0 10px; opacity: .95; }
+.social-icons img { width: 15px; height: 15px; object-fit: contain; margin: 0 10px; opacity: .95; }
 .social-icons img:hover { opacity: 1; }
 /* Hero spacing + typography */
 #hero h1 { margin: 10px 0 6px; }
 #hero p  { margin: 6px 0 18px; line-height: 1.6; color: #cfd6e4; }
 
 /* Button variants + group */
-.btn-primary { border-color: rgba(255,122,26,.4); background: rgba(255,122,26,.12); }
-.btn-primary:hover { box-shadow: 0 0 0 2px rgba(255,122,26,.28) inset; }
+.btn-primary { border-color: rgba(14,165,233,.4); background: rgba(14,165,233,.12); }
+.btn-primary:hover { box-shadow: 0 0 0 2px rgba(14,165,233,.28) inset; }
 
 .btn-secondary { margin-left: 10px; }
 @media (max-width: 520px){
@@ -372,7 +371,7 @@ footer { border-top: 1px solid rgba(255,255,255,0.12); padding: 20px 16px; displ
 }
 
 /* Social icons (size + spacing) */
-.social-icons img { width: 22px; height: 22px; object-fit: contain; margin: 0 10px; opacity: .95; }
+.social-icons img { width: 15px; height: 15px; object-fit: contain; margin: 0 10px; opacity: .95; }
 .social-icons img:hover { opacity: 1; }
 /* --- Hero spacing + button group --- */
 #hero .hero-avatar { margin-bottom: 14px; }
@@ -415,21 +414,24 @@ footer { position: relative; z-index: 2; }
   padding:14px 0;
 }
 .social-btn{
-  width:44px; height:44px; border-radius:9999px;
+  width:36px; height:36px; border-radius:9999px;
   display:inline-flex; align-items:center; justify-content:center;
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.14);
-  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease, background-color .15s ease;
+  transition: transform .15s ease;
 }
 .social-btn:hover{
-  transform: translateY(-1px);
-  background: rgba(255,122,26,.12);            /* orange ghost */
-  border-color: #ff7a1a;
-  box-shadow: 0 0 0 2px rgba(255,122,26,.28) inset;
+  transform: translateY(-2px);
 }
 .social-btn img{
-  width:22px; height:22px; object-fit: contain; display:block;
-  filter: saturate(.9) contrast(1.05);
+  width:18px !important; height:18px !important; object-fit: contain; display:block;
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+  transition: filter .2s ease, opacity .2s ease;
+}
+.social-btn:hover img{
+  filter: brightness(0) saturate(100%) invert(58%) sepia(79%) saturate(900%) hue-rotate(177deg) brightness(98%);
+  opacity: 1;
 }
 
 /* make sure nothing blocks clicks */
@@ -473,8 +475,8 @@ footer {
 main { max-width: 1100px; }
 /* --- Orange skill bars with left-anchored labels --- */
 :root{
-  --accent: #ff7a1a;
-  --accent-2: #ffb86b;
+  --accent: #0ea5e9;
+  --accent-2: #7dd3fc;
 }
 
 /* the track (unchanged look, just a bit darker) */
@@ -517,7 +519,7 @@ main { max-width: 1100px; }
   text-shadow: 0 1px 0 rgba(0,0,0,.25);
 }
 /* keep from earlier step */
-:root{ --accent:#ff7a1a; --accent-2:#ffb86b; }
+:root{ --accent:#0ea5e9; --accent-2:#7dd3fc; }
 
 /* track */
 .skill-bar{ background:#1d1f27; }
@@ -607,8 +609,8 @@ main { max-width: 1100px; }
 .chips{ display:flex; flex-wrap:wrap; gap:8px; }
 .chip{
   padding:6px 10px; border-radius:9999px;
-  background: rgba(255,122,26,.12);
-  border:1px solid rgba(255,122,26,.36);
+  background: rgba(14,165,233,.12);
+  border:1px solid rgba(14,165,233,.36);
   color:#ffd5b1;
   font-size:13px;
 }
@@ -646,8 +648,8 @@ main { max-width: 1100px; }
 .tl-item{ position:relative; padding-left:56px; margin: 18px 0; }
 .tl-dot{
   position:absolute; left:12px; top:8px; width:16px; height:16px; border-radius:50%;
-  background: rgba(255,122,26,.9);
-  box-shadow: 0 0 0 3px rgba(255,122,26,.22);
+  background: rgba(14,165,233,.9);
+  box-shadow: 0 0 0 3px rgba(14,165,233,.22);
 }
 .tl-content{
   background: rgba(255,255,255,.05);
@@ -679,8 +681,8 @@ main { max-width: 1100px; }
   user-select: none;
 }
 .filters .chip.is-active{
-  background: rgba(255,122,26,.14);
-  border-color: rgba(255,122,26,.5);
+  background: rgba(14,165,233,.14);
+  border-color: rgba(14,165,233,.5);
   color: #ffd5b1;
 }
 
@@ -698,9 +700,9 @@ main { max-width: 1100px; }
   transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease, background-color .15s ease;
 }
 .p-card:hover{
-  border-color: #ff7a1a;
-  background: rgba(255,122,26,.12);
-  box-shadow: 0 0 0 2px rgba(255,122,26,.28) inset;
+  border-color: #0ea5e9;
+  background: rgba(14,165,233,.12);
+  box-shadow: 0 0 0 2px rgba(14,165,233,.28) inset;
   transform: translateY(-2px);
 }
 
@@ -763,7 +765,7 @@ cmdk-backdrop
   border:1px solid var(--cmdk-border); padding:2px 6px; border-radius:6px;
 }
 .cmdk-item:hover, .cmdk-item[aria-selected="true"]{
-  background: rgba(255,122,26,.12); border-color:#ff7a1a;
+  background: rgba(14,165,233,.12); border-color:#0ea5e9;
 }
 .cmdk-empty{ color:var(--cmdk-muted); padding:14px; text-align:center; }
 
@@ -868,3 +870,74 @@ html:not(.cmdk-ready) .cmdk-trigger{ display:none !important; }
 @media (prefers-reduced-motion: reduce){
   .view.view-animate{ transition: none !important; }
 }
+}
+
+/* ---- Open to Work badge ---- */
+.open-badge {
+  display: inline-block;
+  background: #4caf50;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 14px;
+}
+
+/* ---- Hero subtitle ---- */
+.hero-sub {
+  font-size: 1.05rem;
+  color: #bbb;
+  letter-spacing: 0.5px;
+  margin: 6px 0 20px;
+}
+
+/* ---- Hire me outline button ---- */
+.btn-outline {
+  background: transparent;
+  border: 2px solid #0ea5e9;
+  color: #0ea5e9;
+  padding: 10px 22px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-outline:hover {
+  background: #0ea5e9;
+  color: #fff;
+}
+
+/* ---- Contact direct links ---- */
+.contact-direct {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 8px;
+}
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: #e0e0e0;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, color 0.2s;
+}
+.contact-link:hover {
+  border-color: #0ea5e9;
+  color: #0ea5e9;
+}
+
+/* ---- About facts link ---- */
+.facts a {
+  color: #0ea5e9;
+  text-decoration: none;
+}
+.facts a:hover { text-decoration: underline; }
