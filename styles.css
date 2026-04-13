@@ -202,6 +202,8 @@ h1 { margin: 18px 0; }
 footer { border-top: 1px solid rgba(255,255,255,0.12); padding: 20px 16px; display: flex; justify-content: center; }
 .social-icons img { height: 15px; margin: 0 6px; opacity: 0.9; }
 .note { color: #9aa3b2; font-size: 14px; }
+.skill-category-label { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin: 28px 0 10px; }
+.section-subhead { font-size: 15px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); margin: 28px 0 8px; }
 #hero { display: grid; place-items: center; padding: 80px 0 40px; position: relative; text-align: center; }
 #particles-js { position: absolute; inset: 0; z-index: 0; }
 #hero h1, #hero p, #hero a { position: relative; z-index: 1; }
