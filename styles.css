@@ -797,7 +797,7 @@ cmdk-backdrop
 .main-nav{ display:flex; align-items:center; gap:16px; }
 .main-nav .push-right{ margin-left:auto; }
 
-/* ========== NEON WELD BORDER — Hero ========== */
+/* ========== NEON WELD BORDER — All pages (hover trigger) ========== */
 @property --hero-angle {
   syntax: '<angle>';
   initial-value: 0deg;
@@ -808,19 +808,19 @@ cmdk-backdrop
   to { --hero-angle: 360deg; }
 }
 
-/* Static permanent neon glow on the hero box */
-#hero {
-  border: 1px solid rgba(14,165,233,0.45) !important;
+/* Base: subtle static glow on every page's main section */
+main > section:first-of-type {
+  position: relative;
+  border: 1px solid rgba(14,165,233,0.3) !important;
   border-radius: 18px !important;
   box-shadow:
-    0 0 10px rgba(14,165,233,0.35),
-    0 0 28px rgba(14,165,233,0.15),
-    0 0 55px rgba(14,165,233,0.07) !important;
+    0 0 8px rgba(14,165,233,0.2),
+    0 0 20px rgba(14,165,233,0.08) !important;
   overflow: visible !important;
 }
 
-/* The spinning weld spark that traces the border */
-#hero::before {
+/* Spark hidden by default */
+main > section:first-of-type::before {
   content: '';
   position: absolute;
   inset: -3px;
@@ -841,18 +841,33 @@ cmdk-backdrop
     linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
-  animation: hero-weld 4s linear infinite;
+  opacity: 0;
   filter: blur(1px);
   z-index: 0;
   pointer-events: none;
+  transition: opacity 0.4s ease;
 }
 
-/* Ensure all hero children stay above the weld effect */
-#hero > * { position: relative; z-index: 1; }
+/* On hover: intensify glow + fire the weld spark */
+main > section:first-of-type:hover {
+  border-color: rgba(14,165,233,0.55) !important;
+  box-shadow:
+    0 0 14px rgba(14,165,233,0.4),
+    0 0 35px rgba(14,165,233,0.18),
+    0 0 60px rgba(14,165,233,0.08) !important;
+}
+
+main > section:first-of-type:hover::before {
+  opacity: 1;
+  animation: hero-weld 4s linear infinite;
+}
+
+/* Keep content above the weld layer */
+main > section:first-of-type > * { position: relative; z-index: 1; }
 #particles-js { z-index: 0 !important; }
 
 @media (prefers-reduced-motion: reduce) {
-  #hero::before { animation: none; }
+  main > section:first-of-type::before { display: none; }
 }
 
 /* Show triggers only when the palette is initialized */
