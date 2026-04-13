@@ -73,25 +73,35 @@ function initPjaxPageTurn(){
 
   // Nav order to determine direction
   const order = {
-    'index.html': 0,
-    'about.html': 1,
-    'experience.html': 2,
-    'projects.html': 3,
-    'portfolio.html': 4,
-    'skills.html': 5,
-    'resume.html': 6,
-    'contact.html': 7
+    '':           0,
+    'about':      1,
+    'experience': 2,
+    'projects':   3,
+    'portfolio':  4,
+    'skills':     5,
+    'resume':     6,
+    'contact':    7
   };
-  const pathLast = () => (location.pathname.split('/').pop() || 'index.html');
-  const idxOf    = (p) => order[p] ?? 0;
+  const pathLast = () => {
+    const parts = location.pathname.split('/').filter(p => p && p !== 'index.html');
+    return parts[parts.length - 1] || '';
+  };
+  const idxOf = (p) => order[p] ?? 0;
 
-  // Intercept internal .html links
+  // Helper: navigate to a root-level slug from any depth
+  const gotoPage = (slug) => {
+    const prefix = pathLast() === '' ? '' : '../';
+    navigateTo(new URL(prefix + (slug ? slug + '/' : ''), location.href).href);
+  };
+
+  // Intercept internal navigation links
   document.addEventListener('click', (e) => {
     const a = e.target.closest('a');
     if (!a) return;
-
     const href = a.getAttribute('href') || '';
-    if (!href.endsWith('.html')) return;
+    if (!href || href.startsWith('#')) return;
+    if (href.startsWith('mailto:') || href.startsWith('tel:')) return;
+    if (a.hasAttribute('download')) return;
     if (a.target === '_blank') return;
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
 
@@ -110,7 +120,8 @@ function initPjaxPageTurn(){
                     document.documentElement.classList.contains('reduce-motion');
 
     const here = pathLast();
-    const next = new URL(url).pathname.split('/').pop() || 'index.html';
+    const nextParts = new URL(url).pathname.split('/').filter(p => p && p !== 'index.html');
+    const next = nextParts[nextParts.length - 1] || '';
     const dir  = idxOf(next) > idxOf(here) ? 'forward' : 'backward';
 
     if (reduced){
@@ -178,7 +189,7 @@ function initPjaxPageTurn(){
 function prefetchOnHover(){
   const cache = new Map();
   document.addEventListener('mouseover', (e)=>{
-    const a = e.target.closest('a[href$=".html"]');
+    const a = e.target.closest('a:not([target="_blank"]):not([download]):not([href^="mailto"]):not([href^="#"])');
     if (!a) return;
     const url = new URL(a.href, location.href).href;
     if (cache.has(url)) return;
@@ -296,20 +307,20 @@ function prefetchOnHover(){
     };
 
     const commands = [
-      { label:'Go: Home', action:() => location.href = 'index.html' },
-      { label:'Go: About Me', action:() => location.href = 'about.html' },
-      { label:'Go: Experience', action:() => location.href = 'experience.html' },
-      { label:'Go: Projects', action:() => location.href = 'projects.html' },
-      { label:'Go: Projects → Discord Embed Forwarder', keywords:'discord webhook', action:() => location.href = 'projects.html#discord-forwarder' },
-      { label:'Go: Projects → Inventory App', keywords:'electron sqlite', action:() => location.href = 'projects.html#inventory-app' },
-      { label:'Go: Projects → Credit Card Payoff Planner', keywords:'finance tkinter', action:() => location.href = 'projects.html#payoff-planner' },
-      { label:'Go: Portfolio', action:() => location.href = 'portfolio.html' },
-      { label:'Go: Skills', action:() => location.href = 'skills.html' },
-      { label:'Open Resume (PDF)', action:() => window.open('Jona_resume.pdf', '_blank') },
+      { label:'Go: Home',       action:() => gotoPage('') },
+      { label:'Go: About Me',   action:() => gotoPage('about') },
+      { label:'Go: Experience', action:() => gotoPage('experience') },
+      { label:'Go: Projects',   action:() => gotoPage('projects') },
+      { label:'Go: Projects → Discord Embed Forwarder', keywords:'discord webhook', action:() => gotoPage('projects') },
+      { label:'Go: Projects → Inventory App', keywords:'electron sqlite',           action:() => gotoPage('projects') },
+      { label:'Go: Projects → Credit Card Payoff Planner', keywords:'finance tkinter', action:() => gotoPage('projects') },
+      { label:'Go: Portfolio',  action:() => gotoPage('portfolio') },
+      { label:'Go: Skills',     action:() => gotoPage('skills') },
+      { label:'Open Resume (PDF)', action:() => { const pre = pathLast() === '' ? '' : '../'; window.open(pre + 'Jona_resume.pdf', '_blank'); } },
       { label:'Download: Discord Forwarder (Python)', action:() => location.href = 'assets/code/discord_forwarder.py' },
       { label:'Download: Payoff Planner (Python)', action:() => location.href = 'assets/code/credit_card_payoff.py' },
       { label:'Copy email address', action:() => copyAndToast(email, 'Email copied'), meta: email },
-      { label:'Open Contact page', action:() => location.href = 'contact.html' },
+      { label:'Open Contact page', action:() => gotoPage('contact') },
       { label:'Open Instagram', action:() => window.open(social.instagram, '_blank') },
       { label:'Open X (Twitter)', action:() => window.open(social.x, '_blank') },
       { label:'Open Facebook', action:() => window.open(social.facebook, '_blank') },
