@@ -285,16 +285,36 @@ python stock_alert_bot.py</code></pre>
       </ul>
 
       <div class="code-block">
-        <pre><code>pip install playwright python-dotenv
-playwright install chromium
+        <pre><code>def human_type(page, selector, text, min_delay=0.04, max_delay=0.12, mistake_chance=0.06):
+    """Types like a human — random delays, occasional typos that get corrected."""
+    box = page.locator(selector).first
+    box.wait_for(state="visible", timeout=20000)
+    box.click()
+    page.keyboard.press("Control+A")
+    page.keyboard.press("Backspace")
+    for ch in text:
+        time.sleep(random.uniform(min_delay, max_delay))
+        if random.random() &lt; mistake_chance:
+            page.keyboard.type(random.choice("abcdefghijklmnopqrstuvwxyz"))
+            time.sleep(random.uniform(0.05, 0.12))
+            page.keyboard.press("Backspace")
+        page.keyboard.type(ch)
 
-# .env
-TARGET_EMAIL=your_email
-TARGET_PASSWORD=your_password
-PROXY_LIST=ip1:port,ip2:port
-
-# run
-python target_automation.py</code></pre>
+def wait_for_code_input(page, timeout_ms=45000):
+    """Polls multiple OTP input selectors until one appears."""
+    selectors = [
+        "#code", "input[name='code']",
+        "input[autocomplete='one-time-code']",
+        "input[inputmode='numeric']", "input[type='tel']",
+    ]
+    deadline = time.time() + timeout_ms / 1000
+    while time.time() &lt; deadline:
+        for sel in selectors:
+            loc = page.locator(sel).first
+            if loc.count() > 0 and loc.is_visible():
+                return sel
+        page.wait_for_timeout(300)
+    return None</code></pre>
       </div>
     </section>
 
