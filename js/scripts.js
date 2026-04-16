@@ -14,12 +14,40 @@
     initProjectTabs();
     initPortfolioFilters();
     initLightbox();
+    initResumeTabs();
     initCommandPalette();
     initPjaxPageTurn();
     prefetchOnHover();
 
     // (optional) initCopyButtons(); // uncomment if you added the Copy button feature
   });
+
+  /* ---------------- RESUME TABS ---------------- */
+  function initResumeTabs() {
+    const tabs = $$('.resume-tab');
+    if (!tabs.length) return;
+
+    tabs.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const url = btn.dataset.resume;
+        tabs.forEach(t => t.classList.remove('active'));
+        btn.classList.add('active');
+
+        const container = document.getElementById('resume-container');
+        if (!container) return;
+        const iframe = document.createElement('iframe');
+        iframe.src = url + '#toolbar=1&navpanes=0&view=FitH';
+        iframe.width = '100%';
+        iframe.height = '820';
+        iframe.style.border = 'none';
+        container.innerHTML = '';
+        container.appendChild(iframe);
+
+        const dl = document.getElementById('resume-download-link');
+        if (dl) dl.href = url;
+      });
+    });
+  }
 
   /* ---------------- SKILL BARS ---------------- */
   function initSkillBars() {
@@ -177,6 +205,7 @@ function initPjaxPageTurn(){
       initPortfolioFilters();
       initLightbox();
       initParticles();
+      initResumeTabs();
     };
 
     let done = false;

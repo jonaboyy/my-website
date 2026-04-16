@@ -82,7 +82,25 @@ body {
   #contact {
     background-color: #353535;
   }
-  
+
+  .resume-tab {
+    padding: 10px 22px;
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 8px;
+    background: #1e1e1e;
+    color: #e0e0e0;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .resume-tab:hover,
+  .resume-tab.active {
+    background: #0284c7;
+    border-color: #0284c7;
+    color: #fff;
+  }
+
   form {
     display: flex;
     flex-direction: column;
