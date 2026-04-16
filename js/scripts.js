@@ -118,8 +118,7 @@ function initPjaxPageTurn(){
 
   // Helper: navigate to a root-level slug from any depth
   const gotoPage = (slug) => {
-    const prefix = pathLast() === '' ? '' : '../';
-    navigateTo(new URL(prefix + (slug ? slug + '/' : ''), location.href).href);
+    navigateTo(location.origin + '/' + (slug ? slug + '/' : ''));
   };
 
   // Intercept internal navigation links
@@ -133,7 +132,7 @@ function initPjaxPageTurn(){
     if (a.target === '_blank') return;
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
 
-    const url = new URL(href, location.href);
+    const url = new URL(a.href); // a.href is already browser-resolved, not affected by pushState URL
     if (url.origin !== location.origin) return;
 
     e.preventDefault();
