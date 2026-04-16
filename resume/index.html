@@ -62,8 +62,8 @@
       </div>
 
       <!-- Inline PDF viewer -->
-      <div style="border:1px solid rgba(255,255,255,.14); border-radius:12px; overflow:hidden;">
-        <iframe id="resume-viewer"
+      <div id="resume-container" style="border:1px solid rgba(255,255,255,.14); border-radius:12px; overflow:hidden;">
+        <iframe
           src="../assets/images/Jonathan_Lopez_Software_Developer_Resume.pdf#toolbar=1&navpanes=0&view=FitH"
           width="100%"
           height="820"
@@ -110,7 +110,16 @@
     function switchResume(btn, url) {
       document.querySelectorAll(‘.resume-tab’).forEach(t => t.classList.remove(‘active’));
       btn.classList.add(‘active’);
-      document.getElementById(‘resume-viewer’).src = url + ‘#toolbar=1&navpanes=0&view=FitH’;
+
+      const container = document.getElementById(‘resume-container’);
+      const iframe = document.createElement(‘iframe’);
+      iframe.src = url + ‘#toolbar=1&navpanes=0&view=FitH’;
+      iframe.width = ‘100%’;
+      iframe.height = ‘820’;
+      iframe.style.border = ‘none’;
+      container.innerHTML = ‘’;
+      container.appendChild(iframe);
+
       document.getElementById(‘resume-download-link’).href = url;
     }
   </script>
