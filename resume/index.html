@@ -79,50 +79,49 @@
           Download Resume
         </a>
       </div>
+      <style>
+        .resume-tab {
+          padding: 10px 22px;
+          border: 1px solid rgba(255,255,255,.2);
+          border-radius: 8px;
+          background: #1e1e1e;
+          color: #e0e0e0;
+          cursor: pointer;
+          font-weight: bold;
+          font-size: 0.95rem;
+          transition: background 0.2s, border-color 0.2s, color 0.2s;
+        }
+        .resume-tab:hover {
+          background: #0284c7;
+          border-color: #0284c7;
+          color: #fff;
+        }
+        .resume-tab.active {
+          background: #0284c7;
+          border-color: #0284c7;
+          color: #fff;
+        }
+      </style>
+
+      <script>
+        function switchResume(btn, url) {
+          document.querySelectorAll(‘.resume-tab’).forEach(t => t.classList.remove(‘active’));
+          btn.classList.add(‘active’);
+
+          const container = document.getElementById(‘resume-container’);
+          const iframe = document.createElement(‘iframe’);
+          iframe.src = url + ‘#toolbar=1&navpanes=0&view=FitH’;
+          iframe.width = ‘100%’;
+          iframe.height = ‘820’;
+          iframe.style.border = ‘none’;
+          container.innerHTML = ‘’;
+          container.appendChild(iframe);
+
+          document.getElementById(‘resume-download-link’).href = url;
+        }
+      </script>
     </section>
   </main>
-
-  <style>
-    .resume-tab {
-      padding: 10px 22px;
-      border: 1px solid rgba(255,255,255,.2);
-      border-radius: 8px;
-      background: #1e1e1e;
-      color: #e0e0e0;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 0.95rem;
-      transition: background 0.2s, border-color 0.2s, color 0.2s;
-    }
-    .resume-tab:hover {
-      background: #0284c7;
-      border-color: #0284c7;
-      color: #fff;
-    }
-    .resume-tab.active {
-      background: #0284c7;
-      border-color: #0284c7;
-      color: #fff;
-    }
-  </style>
-
-  <script>
-    function switchResume(btn, url) {
-      document.querySelectorAll(‘.resume-tab’).forEach(t => t.classList.remove(‘active’));
-      btn.classList.add(‘active’);
-
-      const container = document.getElementById(‘resume-container’);
-      const iframe = document.createElement(‘iframe’);
-      iframe.src = url + ‘#toolbar=1&navpanes=0&view=FitH’;
-      iframe.width = ‘100%’;
-      iframe.height = ‘820’;
-      iframe.style.border = ‘none’;
-      container.innerHTML = ‘’;
-      container.appendChild(iframe);
-
-      document.getElementById(‘resume-download-link’).href = url;
-    }
-  </script>
 
   <footer>
     <div class="social-icons">
