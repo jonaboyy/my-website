@@ -48,25 +48,79 @@
     <section id="resume" class="exp-card" style="max-width:clamp(760px,92vw,1100px);">
       <h1>Resume</h1>
 
+      <!-- Resume tab switcher -->
+      <div class="resume-tabs" style="display:flex;gap:10px;justify-content:center;margin-bottom:20px;flex-wrap:wrap;">
+        <button class="resume-tab active" onclick="switchResume(this,’../assets/images/Jonathan_Lopez_Software_Developer_Resume.pdf’)">
+          Software Developer
+        </button>
+        <button class="resume-tab" onclick="switchResume(this,’../assets/images/Jonathan_Lopez_Data_Analyst_Resume.pdf’)">
+          Data Analyst
+        </button>
+        <button class="resume-tab" onclick="switchResume(this,’../assets/images/Jonathan_Lopez_IT_Support_Resume.pdf’)">
+          IT Support
+        </button>
+      </div>
+
       <!-- Inline PDF viewer -->
       <div style="border:1px solid rgba(255,255,255,.14); border-radius:12px; overflow:hidden;">
-        <object
-          data="assets/images/Jona_resume.pdf#toolbar=1&navpanes=0&view=FitH"
+        <object id="resume-viewer"
+          data="../assets/images/Jonathan_Lopez_Software_Developer_Resume.pdf#toolbar=1&navpanes=0&view=FitH"
           type="application/pdf"
           width="100%"
           height="820">
-          <!-- Fallback if <object> can't render -->
-         
           <p style="padding:12px">
             Your browser can’t display PDFs inline.
-            <a class="btn btn-primary" href="../assets/images/Jona_resume.pdf" target="_blank" rel="noopener">
+            <a id="resume-fallback-link" class="btn btn-primary" href="../assets/images/Jonathan_Lopez_Software_Developer_Resume.pdf" target="_blank" rel="noopener">
               Open in a new tab
             </a>
           </p>
         </object>
       </div>
+
+      <!-- Download button -->
+      <div style="margin-top:14px;text-align:center;">
+        <a id="resume-download-link" class="btn btn-primary"
+           href="../assets/images/Jonathan_Lopez_Software_Developer_Resume.pdf"
+           download style="display:inline-block;padding:10px 24px;background:#0284c7;color:#fff;border-radius:8px;text-decoration:none;font-weight:bold;">
+          Download Resume
+        </a>
+      </div>
     </section>
   </main>
+
+  <style>
+    .resume-tab {
+      padding: 10px 22px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 8px;
+      background: #1e1e1e;
+      color: #e0e0e0;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 0.95rem;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .resume-tab:hover {
+      background: #0284c7;
+      border-color: #0284c7;
+      color: #fff;
+    }
+    .resume-tab.active {
+      background: #0284c7;
+      border-color: #0284c7;
+      color: #fff;
+    }
+  </style>
+
+  <script>
+    function switchResume(btn, url) {
+      document.querySelectorAll(‘.resume-tab’).forEach(t => t.classList.remove(‘active’));
+      btn.classList.add(‘active’);
+      document.getElementById(‘resume-viewer’).data = url + ‘#toolbar=1&navpanes=0&view=FitH’;
+      document.getElementById(‘resume-fallback-link’).href = url;
+      document.getElementById(‘resume-download-link’).href = url;
+    }
+  </script>
 
   <footer>
     <div class="social-icons">
